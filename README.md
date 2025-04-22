@@ -1,7 +1,7 @@
 # discord-minesweeper-plus
 Discord用マインスイーパー生成機
 
-このリポジトリは https://github.com/Ibemu/discord-minesweeper をフォークして、機能追加の目的でカスタマイズしています。
+このリポジトリは [元のリポジトリ](https://github.com/Ibemu/discord-minesweeper) をフォークして、機能追加の目的でカスタマイズしています。
 
 ## このフォークの目的
 
@@ -25,6 +25,6 @@ Discord用マインスイーパー生成機
 
 このプロジェクトのデモは以下で閲覧できます：
 
-👉 [https://brkonic.github.io/discord-minesweeter-plus/](https://brkonic.github.io/discord-minesweeter-plus/)
+👉 [デモサイト](https://brkonic.github.io/discord-minesweeter-plus/)
 
 > ※ GitHub Pages を使用して静的サイトとして公開しています。
