@@ -1,4 +1,4 @@
-# discord-minesweeper-puls
+# discord-minesweeper-plus
 Discord用マインスイーパー生成機
 
 このリポジトリは https://github.com/Ibemu/discord-minesweeper をフォークして、機能追加の目的でカスタマイズしています。
