@@ -1,5 +1,5 @@
 # discord-minesweeper-plus
-Discord用マインスイーパー生成機
+Discord用マインスイーパー生成機プラス
 
 このリポジトリは [元のリポジトリ](https://github.com/Ibemu/discord-minesweeper) をフォークして、機能追加の目的でカスタマイズしています。
 
