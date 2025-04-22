@@ -25,6 +25,6 @@ Discord用マインスイーパー生成機
 
 このプロジェクトのデモは以下で閲覧できます：
 
-👉 [デモサイト](https://brkonic.github.io/discord-minesweeter-plus/)
+👉 [デモサイト](https://brkonic.github.io/discord-minesweeper-plus/)
 
 > ※ GitHub Pages を使用して静的サイトとして公開しています。
