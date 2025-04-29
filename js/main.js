@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById("clear").addEventListener("click", () => {
-        inputClear();
+        generateClear();
     });
 
     document.getElementById("spoiler").addEventListener("click", () => {
@@ -246,7 +246,7 @@ function removeToolTip() {
     if (dummy) dummy.remove();
 }
 
-function inputClear() {
+function generateClear() {
     document.getElementById("width").value = 9;
     document.getElementById("height").value = 9;
     document.getElementById("count").value = 10;
@@ -256,6 +256,9 @@ function inputClear() {
 
     const outputAccordion = document.getElementById("output-accordion");
     outputAccordion.classList.remove("done", "prog-bar");
+
+    const tryBoard = document.getElementById("try-board");
+    while (tryBoard.rows.length) tryBoard.deleteRow(0);
 }
 
 function revealAll() {
