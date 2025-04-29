@@ -376,27 +376,10 @@
 
   <script>
     document.querySelectorAll('.validated-input').forEach(input => {
-      input.addEventListener('input', (event) => {
-        const target = event.target;
-
-        const max = parseInt(target.max, 10);
-        const min = parseInt(target.min, 10);
-        const defaultValue = parseInt(target.dataset.default, 10);
-        let value = parseInt(target.value, 10);
-
-        if (isNaN(value)) {
-          target.value = defaultValue;
-          return;
-        }
-
-        if (value > max) {
-          target.value = max;
-        } else if (value < min) {
-          target.value = min;
-        }
-      });
+      input.addEventListener('input', () => validateInputValue(input));
+      input.addEventListener('blur', () => validateInputValue(input));
     });
-    
+
     document.addEventListener('DOMContentLoaded', function() {
       document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('dummy')) {
@@ -404,6 +387,21 @@
         }
       });
     });
+
+  function validateInputValue(input) {
+    const max = parseInt(input.max, 10);
+    const min = parseInt(input.min, 10);
+    const defaultValue = parseInt(input.dataset.default, 10);
+    let value = parseInt(input.value, 10);
+
+    if (isNaN(value)) {
+      input.value = defaultValue;
+    } else if (value > max) {
+      input.value = max;
+    } else if (value < min) {
+      input.value = min;
+    }
+  }
 
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
