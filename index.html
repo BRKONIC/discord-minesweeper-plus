@@ -395,7 +395,7 @@
     let value = parseInt(input.value, 10);
 
     if (isNaN(value)) {
-      input.value = defaultValue;
+      return;
     } else if (value > max) {
       input.value = max;
     } else if (value < min) {
