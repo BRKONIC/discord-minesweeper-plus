@@ -333,10 +333,10 @@
   <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br/>生成結果をコピーしてDiscordにペーストしてください。</p>
 
   <div class="controls mb-1">
-    <label>幅<input id="width" type="number" inputMode="numeric" value="9" min="1" max="100" placeholder="ボードの幅"></label>
-    <label>高さ<input id="height" type="number" inputMode="numeric" value="9" min="1" max="100" placeholder="ボードの高さ"></label>
-    <label>地雷数<input id="count" type="number" inputMode="numeric" value="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
-    <label>地雷用絵文字<input id="emoji" type="text" value=":bomb:" placeholder="地雷用絵文字の名前"></label>
+    <label>幅<input id="width" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9" min="1" max="100" placeholder="ボードの幅"></label>
+    <label>高さ<input id="height" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9" min="1" max="100" placeholder="ボードの高さ"></label>
+    <label>地雷数<input id="count" type="number" inputMode="numeric" class="validated-input-num" value="10" data-default="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
+    <label>地雷用絵文字<input id="emoji" type="text" value=":bomb:" maxlength="32" placeholder="地雷用絵文字の名前"></label>
   </div>
   
   <div class="controls mb-1">
@@ -375,6 +375,28 @@
   <table id="try-board"></table>
 
   <script>
+    document.querySelectorAll('.validated-input').forEach(input => {
+      input.addEventListener('input', (event) => {
+        const target = event.target;
+
+        const max = parseInt(target.max, 10);
+        const min = parseInt(target.min, 10);
+        const defaultValue = parseInt(target.dataset.default, 10);
+        let value = parseInt(target.value, 10);
+
+        if (isNaN(value)) {
+          target.value = defaultValue;
+          return;
+        }
+
+        if (value > max) {
+          target.value = max;
+        } else if (value < min) {
+          target.value = min;
+        }
+      });
+    });
+    
     document.addEventListener('DOMContentLoaded', function() {
       document.body.addEventListener('click', function(e) {
         if (e.target.classList.contains('dummy')) {
