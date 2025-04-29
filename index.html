@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,25 +9,31 @@
   <meta name="keywords" content="Discord, Minesweeper, ディスコード, マインスイーパー, ゲーム, Discordツール, Discordゲーム生成, カスタム絵文字, プラス機能">
   <meta property="og:title" content="Discord用マインスイーパー生成機プラス" />
   <meta property="og:description" content="マインスイーパーをMarkdown形式で生成します。" />
-  <meta property="og:image" content="https://brkonic.github.io/discord-minesweeper-plus/images/discord-minesweeper-plus-image.png" />
+  <meta property="og:image"
+    content="https://brkonic.github.io/discord-minesweeper-plus/images/discord-minesweeper-plus-image.png" />
   <meta property="og:url" content="https://brkonic.github.io/discord-minesweeper-plus/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Discord用マインスイーパー生成機プラス" />
   <meta name="twitter:description" content="マインスイーパーをMarkdown形式で生成します。" />
-  <meta name="twitter:image" content="https://brkonic.github.io/discord-minesweeper-plus/images/discord-minesweeper-plus-image.png" /> 
+  <meta name="twitter:image"
+    content="https://brkonic.github.io/discord-minesweeper-plus/images/discord-minesweeper-plus-image.png" />
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <h1>Discord用マインスイーパー生成機プラス</h1>
-  <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br/>生成結果をコピーしてDiscordにペーストしてください。</p>
+  <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br />生成結果をコピーしてDiscordにペーストしてください。</p>
 
   <div class="controls mb-1">
-    <label>幅<input id="width" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9" min="1" max="100" placeholder="ボードの幅"></label>
-    <label>高さ<input id="height" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9" min="1" max="100" placeholder="ボードの高さ"></label>
-    <label>地雷数<input id="count" type="number" inputMode="numeric" class="validated-input-num" value="10" data-default="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
+    <label>幅<input id="width" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9"
+        min="1" max="100" placeholder="ボードの幅"></label>
+    <label>高さ<input id="height" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9"
+        min="1" max="100" placeholder="ボードの高さ"></label>
+    <label>地雷数<input id="count" type="number" inputMode="numeric" class="validated-input-num" value="10"
+        data-default="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
     <label>地雷用絵文字<input id="emoji" type="text" value=":bomb:" maxlength="34" placeholder="地雷用絵文字の名前"></label>
   </div>
-  
+
   <div class="controls mb-1">
     <div class="checkbox-inline">
       <input id="reveal-safe" type="checkbox" checked />
@@ -35,7 +42,7 @@
       </label>
     </div>
   </div>
-  
+
   <div class="controls mb-1">
     <button id="generate">生成</button>
     <button id="copy" class="tgTtip" data-tooltip="コピー完了！">コピー</button>
@@ -43,11 +50,11 @@
   </div>
 
   <div class="controls mb-1">
-    <details  id="output-accordion" class="accordion">
+    <details id="output-accordion" class="accordion">
       <summary>
         <div class="summary-contents">
           <span id="summary-text">生成結果を表示</span>
-            <span class="checkmark">✔</span>
+          <span class="checkmark">✔</span>
         </div>
       </summary>
       <textarea id="output" class="accordion-item" rows="10" placeholder="生成結果" readonly></textarea>
@@ -69,4 +76,5 @@
 
   <script src="js/main.js"></script>
 </body>
+
 </html>
