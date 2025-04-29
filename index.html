@@ -21,6 +21,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scrollbar-gutter: stable;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #212121;
@@ -118,6 +122,56 @@
       color: #0f0f0f;
     }
 
+    .accordion {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 7px 15px -5px rgb(0 0 0 / 5%);
+      background-color: #f1f1f1;
+    }
+
+    .accordion summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 10px 20px;
+      color: #0f0f0f;
+      cursor: pointer;
+    }
+
+    .accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion summary::after {
+      transform: translateY(-25%) rotate(45deg);
+      width: 7px;
+      height: 7px;
+      margin-left: 10px;
+      border-bottom: 3px solid #333333b3;
+      border-right: 3px solid #333333b3;
+      content: '';
+      transition: transform .3s;
+    }
+
+    .accordion[open] summary::after {
+      transform: rotate(225deg);
+    }
+
+    .accordion .accordion-item {
+      transform: translateY(-10px);
+      opacity: 0;
+      margin: 0;
+      padding: 15px;
+      transition: transform .5s, opacity .5s;
+    }
+
+    .accordion[open] .accordion-item {
+      transform: none;
+      opacity: 1;
+    }
+
     textarea {
       width: 100%;
       max-width: 680px;
@@ -125,7 +179,6 @@
       background-color: #333;
       color: #f1f1f1;
       border: none;
-      border-radius: 5px;
       resize: none;
       margin-bottom: 20px;
     }
@@ -187,10 +240,10 @@
     p.tgToolTip {
       margin: 0;
       padding: 0.5em 1em;
-      background-color: #3dd5f3;
-      color: #000;
+      background-color: #0d6efd;
+      color: #f1f1f1;
       border-radius: 5px;
-      border-color: #3dd5f3 transparent transparent transparent;
+      border-color: #2a2e35 transparent transparent transparent;
       -moz-border-radius: 5px;
       min-height: 1em;
       top: 100px;
@@ -207,7 +260,7 @@
       transform: translateX(-50%);
       border-width: 6px;
       border-style: solid;
-      border-color: #3dd5f3 transparent transparent transparent;
+      border-color: #0d6efd transparent transparent transparent;
     }
 
     .dummy {
@@ -222,6 +275,14 @@
     @media (max-width: 600px) {
       body {
         padding: 10px;
+      }
+
+      h1 {
+        font-size: x-large;
+      }
+
+      h2 {
+        font-size: larger;
       }
 
       .controls {
@@ -292,7 +353,13 @@
     <button onclick="inputClear()">クリア</button>
   </div>
 
-  <textarea id="output" rows="10" placeholder="生成結果" readonly></textarea>
+  <div class="controls mb-1">
+    <details class="accordion">
+      <summary>生成結果を表示</summary>
+      <textarea id="output" class="accordion-item" rows="10" placeholder="生成結果" readonly></textarea>
+    </details>
+  </div>
+
   <p>生成文字数: <span id="character-count">0</span>文字</p>
   <p class="notes-text mb-2">※Discordは2000文字まで</p>
 
