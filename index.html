@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Discord用マインスイーパー生成機プラス</title>
-　<meta name="description" content="Discordサーバーで楽しめるマインスイーパーを簡単に生成できるWebツール。カスタム絵文字を使用して、より個性的なゲーム体験を提供します。">
+  <meta name="description" content="Discordサーバーで楽しめるマインスイーパーを簡単に生成できるWebツール。カスタム絵文字を使用して、より個性的なゲーム体験を提供します。">
   <meta name="keywords" content="Discord, Minesweeper, ディスコード, マインスイーパー, ゲーム, Discordツール, Discordゲーム生成, カスタム絵文字, プラス機能">
   <meta property="og:title" content="Discord用マインスイーパー生成機プラス" />
   <meta property="og:description" content="マインスイーパーをMarkdown形式で生成します。" />
@@ -130,7 +130,10 @@
       margin-bottom: 20px;
     }
 
-    .sub-text { color: #aaa; }
+    .sub-text {
+      color: #aaa;
+      text-align: center;
+    }
     .danger-text { color: #FF0033; }
     .notes-text { color: #fbc02d; }
 
@@ -175,6 +178,45 @@
 
     td:not(.spoiler):hover {
       background-color: #212121;
+    }
+
+    .hide{
+      display: none;
+    }
+
+    p.tgToolTip {
+      margin: 0;
+      padding: 0.5em 1em;
+      background-color: #3dd5f3;
+      color: #000;
+      border-radius: 5px;
+      border-color: #3dd5f3 transparent transparent transparent;
+      -moz-border-radius: 5px;
+      min-height: 1em;
+      top: 100px;
+      left: 20px;
+      position: absolute;
+      z-index: 100;
+    }
+
+    p.tgToolTip::after {
+      content: "";
+      position: absolute;
+      top: calc(100% - 1px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: #3dd5f3 transparent transparent transparent;
+    }
+
+    .dummy {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      opacity: 0;
     }
 
     @media (max-width: 600px) {
@@ -226,7 +268,7 @@
 </head>
 <body>
   <h1>Discord用マインスイーパー生成機プラス</h1>
-  <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。</p>
+  <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br/>生成結果をコピーしてDiscordにペーストしてください。</p>
 
   <div class="controls mb-1">
     <label>幅<input id="width" type="number" inputMode="numeric" value="9" min="1" max="100" placeholder="ボードの幅"></label>
@@ -246,7 +288,7 @@
   
   <div class="controls mb-1">
     <button onclick="generate()">生成</button>
-    <button onclick="copy()">コピー</button>
+    <button onclick="copy(event)" class="tgTtip" data-tooltip="コピー完了！">コピー</button>
     <button onclick="inputClear()">クリア</button>
   </div>
 
@@ -265,6 +307,14 @@
   <table id="try-board"></table>
 
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('dummy')) {
+          removeToolTip();
+        }
+      });
+    });
+
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
@@ -341,10 +391,57 @@
       countDisplay.classList.toggle("danger-text", text.length > 2000);
     }
 
-    function copy() {
+    function copy(event) {
       const output = document.getElementById("output");
       output.select();
-      document.execCommand("copy");
+      navigator.clipboard.writeText(output.value).then(() => {
+        showToolTip(event);
+      }).catch(err => {
+        alert('コピーに失敗しました: ' + err);
+      });
+    }
+
+    function showToolTip(event){
+      const target = event.target;
+      if (!target.classList.contains("tgTtip")) {
+        return;
+      }
+
+      const dataTooltip = target.getAttribute('data-tooltip');
+
+      const tooltip = document.createElement('p');
+      tooltip.className = 'tgToolTip';
+      tooltip.textContent = dataTooltip;
+      document.body.appendChild(tooltip);
+
+      const rect = target.getBoundingClientRect();
+      const buttonWidth = rect.width;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      const tooltipWidth = tooltip.offsetWidth;
+      const tooltipHeight = tooltip.offsetHeight;
+
+      const newPositionTop = rect.top + scrollTop - tooltipHeight - 8;
+      const newPositionLeft = rect.left + scrollLeft + (buttonWidth / 2) - (tooltipWidth / 2);
+
+      tooltip.style.top = newPositionTop + 'px';
+      tooltip.style.left = newPositionLeft + 'px';
+
+      const dummy = document.createElement('p');
+      dummy.className = 'dummy';
+      document.body.appendChild(dummy);
+
+      setTimeout(() => {
+          removeToolTip();
+        }, 2000);
+    }
+
+    function removeToolTip(){
+      var tooltip = document.querySelector('p.tgToolTip');
+      var dummy = document.querySelector('p.dummy');
+      if (tooltip) tooltip.remove();
+      if (dummy) dummy.remove();
     }
 
     function inputClear() {
@@ -353,7 +450,7 @@
       document.getElementById("count").value = 10;
       document.getElementById("emoji").value = ":bomb:";
       document.getElementById("output").value = "";
-      document.getElementById("reveal-safe").checked = false;
+      document.getElementById("reveal-safe").checked = true;
     }
 
     function revealAll() {
