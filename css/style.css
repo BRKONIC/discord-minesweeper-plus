@@ -216,24 +216,33 @@ button:hover {
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg, #7669E2, #966CEA, #B56EF1, #966CEA, #7669E2);
-    background-size: 300% 100%;
-    animation: progBar 1.5s linear infinite;
+    background: linear-gradient(90deg,
+            #7669E2 0%,
+            #8A6FEA 25%,
+            #B56EF1 50%,
+            #D59EFF 75%,
+            #E0B3FF 92%,
+            #D59EFF 94%,
+            #B56EF1 96%,
+            #8A6FEA 98%,
+            #7669E2 100%);
+    background-size: 200% 100%;
     z-index: -1;
-    z-index: -1;
-    border-radius: 5px;
+    animation: progBar 0.5s linear infinite;
     filter: brightness(1.2);
+    border-radius: 5px;
 }
 
 @keyframes progBar {
     0% {
-        background-position: -100% 50%;
+        background-position: 200% 0%;
     }
 
     100% {
-        background-position: 100% 50%;
+        background-position: 0% 0%;
     }
 }
+
 
 .accordion.prog-bar summary .summary-contents #summary-text {
     color: #DFE0E2;
