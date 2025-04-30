@@ -183,13 +183,13 @@ button:hover {
 }
 
 .accordion summary .summary-contents .checkmark {
-    display: none;
+    visibility: hidden;
     margin-left: 5px;
     color: #6B57F0;
 }
 
 .accordion.done summary .summary-contents .checkmark {
-    display: inline-block;
+    visibility: visible;
 }
 
 .accordion .accordion-item {
