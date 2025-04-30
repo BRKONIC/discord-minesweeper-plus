@@ -21,58 +21,85 @@
 </head>
 
 <body>
-  <h1>Discord用マインスイーパー生成機プラス</h1>
-  <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br />生成結果をコピーしてDiscordにペーストしてください。</p>
+  <header>
+    <h1>
+      <span class="mobile-title-line1">Discord用</span>
+      <span class="mobile-title-line2">マインスイーパー生成機プラス</span>
+    </h1>
 
-  <div class="controls mb-1">
-    <label>幅<input id="width" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9"
-        min="1" max="100" placeholder="ボードの幅"></label>
-    <label>高さ<input id="height" type="number" inputMode="numeric" class="validated-input-num" value="9" data-default="9"
-        min="1" max="100" placeholder="ボードの高さ"></label>
-    <label>地雷数<input id="count" type="number" inputMode="numeric" class="validated-input-num" value="10"
-        data-default="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
-    <label>地雷用絵文字<input id="emoji" type="text" value=":bomb:" maxlength="34" placeholder="地雷用絵文字の名前"></label>
-  </div>
+    <p class="sub-text mb-2">マインスイーパーをMarkdown形式で生成します。<br />生成結果をコピーしてDiscordにペーストしてください。</p>
+  </header>
 
-  <div class="controls mb-1">
-    <div class="checkbox-inline">
-      <input id="reveal-safe" type="checkbox" checked />
-      <label for="reveal-safe" class="checkbox-inline w-auto">
-        安全そうなマスを1つ公開する
-      </label>
-    </div>
-  </div>
+  <main>
 
-  <div class="controls mb-1">
-    <button id="generate">生成</button>
-    <button id="copy" class="tgTtip" data-tooltip="コピー完了！">コピー</button>
-    <button id="clear">クリア</button>
-  </div>
+    <section aria-labelledby="section-config">
 
-  <div class="controls mb-1">
-    <details id="output-accordion" class="accordion">
-      <summary>
-        <div class="summary-contents">
-          <span id="summary-text">生成結果を表示</span>
-          <span class="checkmark">✔</span>
+      <h2 id="section-config">生成設定</h2>
+
+      <div class="controls mb-1">
+        <label for="width">幅<input id="width" type="number" inputMode="numeric" class="validated-input-num" value="9"
+            data-default="9" min="1" max="100" placeholder="ボードの幅"></label>
+        <label for="height">高さ<input id="height" type="number" inputMode="numeric" class="validated-input-num" value="9"
+            data-default="9" min="1" max="100" placeholder="ボードの高さ"></label>
+        <label for="count">地雷数<input id="count" type="number" inputMode="numeric" class="validated-input-num" value="10"
+            data-default="10" min="1" max="10000" placeholder="ボードの地雷数"></label>
+        <label for="emoji">地雷用絵文字<input id="emoji" type="text" value=":bomb:" maxlength="34"
+            placeholder="地雷用絵文字の名前"></label>
+      </div>
+
+      <div class="controls mb-1">
+        <div class="checkbox-inline">
+          <input id="reveal-safe" type="checkbox" checked />
+          <label for="reveal-safe" class="checkbox-inline w-auto">
+            安全そうなマスを1つ公開する
+          </label>
         </div>
-      </summary>
-      <textarea id="output" class="accordion-item" rows="10" placeholder="生成結果" readonly></textarea>
-    </details>
-  </div>
+      </div>
 
-  <p>生成文字数: <span id="character-count">0</span>文字</p>
-  <p class="notes-text mb-2">※Discordは2000文字まで</p>
+      <div class="controls mb-1">
+        <button id="generate">生成</button>
+        <button id="copy" class="tgTtip" data-tooltip="コピー完了！">コピー</button>
+        <button id="clear">クリア</button>
+      </div>
 
-  <h2>お試し</h2>
-  <div class="radio-controls mb-1">
-    <input type="radio" id="spoiler" name="spoiler" checked>
-    <label for="spoiler">すべてスポイラー</label>
-    <input type="radio" id="reveal" name="spoiler">
-    <label for="reveal">スポイラー解除</label>
-  </div>
+    </section>
 
-  <table id="try-board"></table>
+    <section aria-labelledby="section-output">
+
+      <h2 id="section-output">生成結果</h2>
+
+      <div class="controls">
+        <details id="output-accordion" class="accordion">
+          <summary>
+            <div class="summary-contents">
+              <span id="summary-text">生成結果を表示</span>
+              <span class="checkmark">✔</span>
+            </div>
+          </summary>
+          <textarea id="output" class="accordion-item" rows="10" placeholder="生成結果" readonly></textarea>
+        </details>
+      </div>
+
+      <p>生成文字数: <span id="character-count">0</span>文字</p>
+      <p class="notes-text mb-1">※Discordは2000文字まで</p>
+
+    </section>
+
+    <section aria-labelledby="section-preview">
+
+      <h2 id="section-preview">お試しマインスイーパー</h2>
+
+      <div class="radio-controls mb-1">
+        <input type="radio" id="spoiler" name="spoiler" checked>
+        <label for="spoiler">すべてスポイラー</label>
+        <input type="radio" id="reveal" name="spoiler">
+        <label for="reveal">スポイラー解除</label>
+      </div>
+
+      <table id="try-board"></table>
+
+    </section>
+  </main>
 
   <script src="js/main.js"></script>
 </body>
