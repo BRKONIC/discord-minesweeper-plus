@@ -251,14 +251,17 @@ function generateClear() {
     document.getElementById("height").value = 9;
     document.getElementById("count").value = 10;
     document.getElementById("emoji").value = ":bomb:";
-    document.getElementById("output").value = "";
     document.getElementById("reveal-safe").checked = true;
 
-    const outputAccordion = document.getElementById("output-accordion");
-    outputAccordion.classList.remove("done", "prog-bar");
+    const elements = getRunningStateElements();
+    elements.outputAccordion.classList.remove("done", "prog-bar");
 
-    const tryBoard = document.getElementById("try-board");
-    while (tryBoard.rows.length) tryBoard.deleteRow(0);
+    elements.output.value = "";
+
+    elements.countDisplay.textContent = 0;
+    elements.countDisplay.classList.toggle("danger-text", false);
+    
+    while (elements.tryBoard.rows.length) elements.tryBoard.deleteRow(0);
 }
 
 function revealAll() {
