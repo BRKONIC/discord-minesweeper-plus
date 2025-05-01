@@ -271,6 +271,10 @@ textarea {
     font-weight: bold;
 }
 
+.danger-text {
+    color: #D54646;
+}
+
 table {
     margin-top: 10px;
     border-collapse: collapse;
