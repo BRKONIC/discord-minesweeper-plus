@@ -45,10 +45,6 @@ h2 {
     color: transparent;
 }
 
-.mt-2 {
-    margin-top: 20px;
-}
-
 .mb-1 {
     margin-bottom: 10px;
 }
@@ -73,8 +69,18 @@ h2 {
 .controls label {
     display: flex;
     flex-direction: column;
-    color: #DFE0E2;
     width: 150px;
+    color: #DFE0E2;
+}
+
+input[type="text"],
+input[type="number"] {
+    margin-top: 5px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3A3A41;
+    color: #DFE0E2;
 }
 
 .checkbox-inline {
@@ -84,19 +90,9 @@ h2 {
     color: #DFE0E2;
 }
 
-input[type="text"],
-input[type="number"] {
-    padding: 8px;
-    margin-top: 5px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3A3A41;
-    color: #DFE0E2;
-}
-
 button {
-    padding: 10px 20px;
     margin: 5px;
+    padding: 10px 20px;
     background-color: #393A3F;
     color: #DFE0E2;
     border: none;
@@ -143,8 +139,8 @@ button:hover {
     width: 100%;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0 7px 15px -5px rgb(0 0 0 / 5%);
     background-color: #f1f1f1;
+    box-shadow: 0 7px 15px -5px rgba(0, 0, 0, 0.05);
     position: relative;
 }
 
@@ -152,10 +148,10 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     padding: 10px 20px;
     color: #000000;
     cursor: pointer;
+    position: relative;
 }
 
 .accordion summary::-webkit-details-marker {
@@ -163,14 +159,14 @@ button:hover {
 }
 
 .accordion summary::after {
-    transform: translateY(-25%) rotate(45deg);
+    content: '';
     width: 7px;
     height: 7px;
     margin-left: 10px;
     border-bottom: 3px solid #000000;
     border-right: 3px solid #000000;
-    content: '';
-    transition: transform .3s;
+    transform: translateY(-25%) rotate(45deg);
+    transition: transform 0.3s;
 }
 
 .accordion[open] summary::after {
@@ -182,22 +178,22 @@ button:hover {
     justify-content: flex-start;
 }
 
-.accordion summary .summary-contents .checkmark {
+.accordion summary .checkmark {
     visibility: hidden;
     margin-left: 5px;
     color: #6B57F0;
 }
 
-.accordion.done summary .summary-contents .checkmark {
+.accordion.done summary .checkmark {
     visibility: visible;
 }
 
 .accordion .accordion-item {
-    transform: translateY(-10px);
-    opacity: 0;
     margin: 0;
     padding: 15px;
-    transition: transform .5s, opacity .5s;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
 }
 
 .accordion[open] .accordion-item {
@@ -216,21 +212,12 @@ button:hover {
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg,
-            #7669E2 0%,
-            #8A6FEA 25%,
-            #B56EF1 50%,
-            #D59EFF 75%,
-            #E0B3FF 92%,
-            #D59EFF 94%,
-            #B56EF1 96%,
-            #8A6FEA 98%,
-            #7669E2 100%);
+    background: linear-gradient(90deg, #7669E2 0%, #8A6FEA 25%, #B56EF1 50%, #D59EFF 75%, #E0B3FF 92%, #D59EFF 94%, #B56EF1 96%, #8A6FEA 98%, #7669E2 100%);
     background-size: 200% 100%;
-    z-index: -1;
     animation: progBar 0.5s linear infinite;
     filter: brightness(1.2);
     border-radius: 5px;
+    z-index: -1;
 }
 
 @keyframes progBar {
@@ -243,29 +230,24 @@ button:hover {
     }
 }
 
-
-.accordion.prog-bar summary .summary-contents #summary-text {
+.accordion.prog-bar #summary-text {
     color: #DFE0E2;
 }
 
 textarea {
     width: 100%;
     max-width: 680px;
+    margin-bottom: 20px;
     padding: 10px 16px;
     background-color: #3A3A41;
     color: #DFE0E2;
     border: none;
     resize: none;
-    margin-bottom: 20px;
 }
 
 .sub-text {
     color: #9C9CA3;
     text-align: center;
-}
-
-.danger-text {
-    color: #D54646;
 }
 
 .notes-text {
@@ -274,10 +256,10 @@ textarea {
 }
 
 table {
-    border-collapse: collapse;
-    cursor: pointer;
-    user-select: none;
     margin-top: 10px;
+    border-collapse: collapse;
+    user-select: none;
+    cursor: pointer;
 }
 
 td {
@@ -322,18 +304,16 @@ td:not(.spoiler):hover {
 }
 
 p.tgToolTip {
-    margin: 0;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    z-index: 100;
+    min-height: 1em;
     padding: 0.5em 1em;
     background-color: #6B57F0;
     color: #DFE0E2;
     border-radius: 5px;
     border-color: #2a2e35 transparent transparent transparent;
-    -moz-border-radius: 5px;
-    min-height: 1em;
-    top: 100px;
-    left: 20px;
-    position: absolute;
-    z-index: 100;
 }
 
 p.tgToolTip::after {
@@ -347,18 +327,9 @@ p.tgToolTip::after {
     border-color: #6B57F0 transparent transparent transparent;
 }
 
-.dummy {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0;
-}
-
 @media (max-width: 600px) {
     body {
-        padding: 10px 10px 20px 10px;
+        padding: 10px 10px 20px;
     }
 
     h1 {
@@ -393,8 +364,9 @@ p.tgToolTip::after {
     input[type="number"] {
         width: 100%;
         font-size: 16px;
+        margin: 0;
     }
-
+    
     button {
         width: 100%;
         font-size: 16px;

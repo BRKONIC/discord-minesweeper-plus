@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.body.addEventListener('click', (e) => {
-        if (e.target.classList.contains('dummy')) {
-            removeToolTip();
-        }
-    });
-
     document.querySelectorAll('.validated-input-num').forEach(input => {
         input.addEventListener('input', () => validateInputValue(input));
         input.addEventListener('blur', () => validateInputValue(input));
@@ -230,20 +224,14 @@ function showToolTip(event) {
     tooltip.style.top = newPositionTop + 'px';
     tooltip.style.left = newPositionLeft + 'px';
 
-    const dummy = document.createElement('p');
-    dummy.className = 'dummy';
-    document.body.appendChild(dummy);
-
     setTimeout(() => {
         removeToolTip();
-    }, 2000);
+    }, 1000);
 }
 
 function removeToolTip() {
     var tooltip = document.querySelector('p.tgToolTip');
-    var dummy = document.querySelector('p.dummy');
     if (tooltip) tooltip.remove();
-    if (dummy) dummy.remove();
 }
 
 function generateClear() {
